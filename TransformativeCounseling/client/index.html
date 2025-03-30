@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transforming Lives Collaboratively Counselling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GitHub Pages SPA routing script -->
+    <script type="text/javascript">
+      // If we're on GitHub Pages, check for redirect from the 404.html page
+      // This handles client-side routing on GitHub Pages
+      (function() {
+        // Parse query parameters
+        const query = window.location.search;
+        const urlParams = new URLSearchParams(query);
+
+        // Check if we have route parameters from a redirect
+        if (urlParams.has('route')) {
+          // Get the route and query parameters
+          const route = urlParams.get('route');
+          const queryParams = urlParams.has('query') ? urlParams.get('query') : '';
+          
+          // Reconstruct the path
+          const newPath = window.location.pathname.replace('index.html', '').replace(/\/$/, '');
+          const newUrl = window.location.origin + newPath + '/' + route + 
+                        (queryParams ? '?' + queryParams : '') + window.location.hash;
+          
+          // Replace the current URL without adding to browser history
+          window.history.replaceState(null, null, newUrl);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

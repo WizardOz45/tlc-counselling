@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // Single Page Apps for GitHub Pages
+    // This script takes the current URL and converts the path and query
+    // parameters into a redirect URL that will pass through the GitHub Pages
+    // 404 route and load the correct content in the single page app.
+    
+    // Extracts the repository name from the basePath
+    const getSegmentCount = () => {
+      const path = window.location.pathname;
+      // Count segments (skip empty segments that may appear at start or end)
+      const segments = path.split('/').filter(Boolean);
+      
+      // For GitHub Pages with custom domains, there's no repo name in the path
+      if (window.location.hostname !== 'localhost' && 
+          window.location.hostname !== '127.0.0.1' && 
+          !window.location.hostname.includes('github.io')) {
+        return 0; // Custom domain, no repo name in path
+      }
+      
+      // For github.io domains, the first segment is the repo name
+      if (window.location.hostname.includes('github.io')) {
+        return 1; // The repo name is the first segment
+      }
+      
+      return 0; // Default case
+    };
+    
+    const segmentCount = getSegmentCount();
+    
+    // Redirects to index.html while preserving the URL
+    const l = window.location;
+    const redirectPath = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?route=' +
+      l.pathname.slice(1).split('/').slice(segmentCount).join('/') +
+      (l.search ? '&query=' + l.search.slice(1) : '') +
+      (l.hash ? '#' + l.hash.slice(1) : '');
+    
+    window.location.replace(redirectPath);
+  </script>
+</head>
+<body>
+  <h2>Redirecting...</h2>
+  <p>If you are not redirected automatically, please click <a id="redirect-link" href="/">here</a>.</p>
+  <script>
+    document.getElementById('redirect-link').setAttribute('href', window.location.pathname);
+  </script>
+</body>
+</html>
